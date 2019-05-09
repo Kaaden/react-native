@@ -4,7 +4,7 @@ export default class HomeStore {
     @observable pic = "https://facebook.github.io/react/logo-og.png"
     @observable list = []
     @observable tag = []
-    @observable loading=false
+    @observable loading=true
     constructor() { }
 
 

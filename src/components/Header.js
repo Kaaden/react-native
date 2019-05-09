@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { observer, inject } from "mobx-react"
 import Colors from './Color';
 import Icon from "./Icon"
@@ -11,15 +11,21 @@ class Header extends React.Component {
         const { HomeStore } = this.props.rootStore
         this.HomeStore = HomeStore
     }
+    search = () => {
+        console.log(1)
+    }
     render() {
         const { title } = this.props
         return (
             <View style={styles.container}>
-                <Icon
-                    name={"md-search"}
-                    size={26}
-                    color={Colors.tabIconSelected}
-                />
+                <TouchableOpacity onPress={this.search} >
+
+                    <Icon
+                        name={"md-search"}
+                        size={26}
+                        color={Colors.tabIconSelected}
+                    />
+                </TouchableOpacity>
                 <Text style={styles.title} numberOfLines={1}>{title}</Text>
                 <Icon name={"md-add"} size={26} color={Colors.tabIconSelected} />
             </View>

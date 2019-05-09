@@ -8,7 +8,6 @@ class Loading extends Component {
 
     render() {
         const { loading } = this.props
-        console.log(loading)
         return (
             <View style={styles.contain}>
                 <Icon name={loading ? "ios-refresh" : "ios-barcode"} size={26} color={Color.desc} />

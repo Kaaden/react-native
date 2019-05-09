@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { FlatList } from 'react-native';
 import { observer, inject } from "mobx-react"
 import Item from "./Item"
-import { Loading } from "../../../components"
+import { Loading, Empty } from "../../../components"
 const ITEM_HEIGHT = 82
 @inject("rootStore")
 @observer
@@ -16,17 +16,18 @@ class List extends Component {
             refreshing: false,
         }
     }
+
     componentDidMount() {
         this._getData(1, false)
     }
-    _getData = async (pageindex, flesh) => {
+
+    _getData = (pageindex, flesh) => {
         this.HomeStore.fetchList({ pageindex, flesh })
         this.setState({ page: pageindex, })
-
     }
+
     // 列表key值
     _keyExtractor = (item, index) => `${index}`
-
 
     // 上拉加载
     _onLoad = () => {
@@ -34,6 +35,7 @@ class List extends Component {
         page = page + 1
         this._getData(page, false)
     }
+
     // 刷新
     _onRefresh = async () => {
         this.setState({ refreshing: true })
@@ -48,14 +50,30 @@ class List extends Component {
 
     _item = ({ item }) => <Item item={item} />
 
-    _footer = () => <Loading loading={this.HomeStore.loading} />
+    _footer = () => {
+        const { list, loading } = this.HomeStore
+        if (!list.length) {
+            return null
+        } else {
+            return (<Loading loading={loading} />)
+        }
+    }
 
+    _empty = () => {
+        const { loading } = this.HomeStore
+        if (!loading) {
+            return (<Empty />)
+        } else {
+            return null
+        }
+    }
     render() {
         const { refreshing } = this.state
         const { list } = this.HomeStore
         return (
             <FlatList
                 data={list}
+                ListEmptyComponent={this._empty}
                 ListFooterComponent={this._footer}
                 keyExtractor={this._keyExtractor}
                 renderItem={this._item}

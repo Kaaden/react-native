@@ -4,4 +4,5 @@ import Header from "./Header"
 import TabBarIcon from "./TabBarIcon"
 import Loading from "./Loading"
 import Icon from "./Icon"
-export { Icon, Img, Color, Header, TabBarIcon, Loading }
+import Empty from "./Empty"
+export { Icon, Img, Color, Header, TabBarIcon, Loading, Empty }

@@ -14,10 +14,6 @@ export default class Home extends React.Component {
         const { HomeStore } = this.props.rootStore
         this.HomeStore = HomeStore
     }
-    componentDidMount() {
-    }
-
-
     render() {
         return (
             <SafeAreaView style={styles.container}>
