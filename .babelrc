@@ -1,9 +1,26 @@
 {
     "presets": [
-        "react-native"
+        "babel-preset-expo"
     ],
     "plugins": [
-        "syntax-decorators",
-        "transform-decorators-legacy"
-    ]
+        [
+            "import",
+            {
+                "libraryName": "@ant-design/react-native",
+            }
+        ],
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
+        [
+            "@babel/transform-runtime",
+            {
+                "helpers": true,
+                "regenerator": false
+            }
+        ]
+    ],
 }
