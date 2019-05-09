@@ -2,17 +2,25 @@ import React, { Component } from "react"
 import { TouchableHighlight, Text, View, Image, StyleSheet } from 'react-native';
 import { observer, inject } from "mobx-react"
 import Color from "../../../components/Color"
-const DEFAULT = require("../../../../assets/images/idp.png")
+const DEFAULT = { errImg: require("../../../../assets/images/idp.png") }
 @inject("rootStore")
 @observer
 class List extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            type: 0
+        }
     }
 
 
     render() {
+        const { type } = this.state
         const { item } = this.props
+        let url = { uri: item.img }
+        if (type === 1) {
+            url = require("../../../../assets/images/idp.png")
+        }
         return (
             <TouchableHighlight >
                 <View style={styles.container}>
@@ -25,7 +33,8 @@ class List extends Component {
                         <Text numberOfLines={3} style={styles.desc}>{item.description}</Text>
                         <Text style={styles.time}>{item.time}</Text>
                     </View>
-                    <Image source={{ uri: item.img }} style={styles.img} errImage={DEFAULT} />
+                    <Image source={url} style={styles.img} onError={(error) => { this.setState({ type: 1 }) }}
+                    />
                 </View>
             </TouchableHighlight>
         )
