@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
 import { observer, inject } from "mobx-react"
-import Header from "../../components/Header"
+import { Header } from "../../components"
 import List from "./components/List"
 @inject("rootStore")
 @observer
@@ -15,13 +15,10 @@ export default class Home extends React.Component {
         this.HomeStore = HomeStore
     }
     componentDidMount() {
-        // this.HomeStore.fetchBing()
-        // this.HomeStore.fetchList(1)
     }
 
 
     render() {
-        // const { pic, list } = this.HomeStore
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar
@@ -30,12 +27,6 @@ export default class Home extends React.Component {
                     backgroundColor="#FFFFFF"
                 />
                 <List />
-                {/* <Image source={{ uri: pic }} style={{ width: "100%", height: 400 }} /> */}
-                {/* <FlatList
-                    data={list}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={({ item }) => <Text style={styles.item}>{item.title}</Text>}
-                /> */}
             </SafeAreaView>
         );
     }
@@ -45,7 +36,7 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:"#f0f0f0"
+        backgroundColor: "#f0f0f0"
     },
     item: {
         padding: 10,

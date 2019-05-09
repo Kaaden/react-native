@@ -1,8 +1,8 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { observer, inject } from "mobx-react"
-import { Ionicons } from '@expo/vector-icons';
 import Colors from './Color';
+import Icon from "./Icon"
 @inject("rootStore")
 @observer
 class Header extends React.Component {
@@ -15,13 +15,13 @@ class Header extends React.Component {
         const { title } = this.props
         return (
             <View style={styles.container}>
-                <Ionicons
+                <Icon
                     name={"md-search"}
                     size={26}
-                    style={styles.icon}
+                    color={Colors.tabIconSelected}
                 />
                 <Text style={styles.title} numberOfLines={1}>{title}</Text>
-                <Ionicons name={"md-add"} size={26} style={styles.icon} />
+                <Icon name={"md-add"} size={26} color={Colors.tabIconSelected} />
             </View>
         )
     }

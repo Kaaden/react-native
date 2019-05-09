@@ -4,6 +4,7 @@ export default class HomeStore {
     @observable pic = "https://facebook.github.io/react/logo-og.png"
     @observable list = []
     @observable tag = []
+    @observable loading=false
     constructor() { }
 
 
@@ -16,10 +17,13 @@ export default class HomeStore {
 
 
     fetchList = flow(function* (payload) {
-        const data = yield service.getContent({ pageindex: payload, pageSize: 10, status: 1 })
+        this.loading=true
+        const { pageindex, flesh } = payload
+        const data = yield service.getContent({ pageindex: pageindex, pageSize: 10, status: 1 })
         if (data.isok) {
-            this.list = data.data
+            this.list = flesh ? data.data : [...this.list, ...data.data]
         }
+        this.loading=false
     })
 
     fetchTag = flow(function* () {
@@ -28,5 +32,6 @@ export default class HomeStore {
             this.tag = data.data
         }
     })
+
 
 }

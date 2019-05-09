@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import TabBarIcon from '../components/TabBarIcon';
+import { TabBarIcon } from '../components';
 
 export const PageSetting = (page, name, icon) => {
     const Stack = createStackNavigator({
