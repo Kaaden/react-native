@@ -4,6 +4,8 @@ import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './src/navigation/AppNavigator';
 import store from "./src/mobx/store"
 import { Provider } from "mobx-react"
+import { createAppContainer } from "react-navigation"
+const AppContainer = createAppContainer(AppNavigator)
 export default class App extends React.Component {
   state = {
     isLoading: false,
@@ -23,7 +25,7 @@ export default class App extends React.Component {
       return (
         <Provider rootStore={store}>
           <View style={styles.container}>
-            <AppNavigator />
+            <AppContainer />
           </View>
         </Provider>
       );

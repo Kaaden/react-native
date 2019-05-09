@@ -2,18 +2,14 @@ import React from 'react';
 import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
 import { observer, inject } from "mobx-react"
 import { Header } from "../../components"
-import List from "./components/List"
 @inject("rootStore")
 @observer
-export default class Home extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-
-        headerTitle: <Header title={"首页"} _onPress={navigation.navigate('Search')} />,
+export default class Search extends React.Component {
+    static navigationOptions = ({
+        headerTitle: <Header title={"搜索"} />,
     });//配置标题
     constructor(props) {
         super(props)
-        const { HomeStore } = this.props.rootStore
-        this.HomeStore = HomeStore
     }
     render() {
         return (
@@ -23,7 +19,7 @@ export default class Home extends React.Component {
                     barStyle="dark-content"
                     backgroundColor="#FFFFFF"
                 />
-                <List />
+              <Text>12313</Text>
             </SafeAreaView>
         );
     }
@@ -35,9 +31,5 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#f0f0f0"
     },
-    item: {
-        padding: 10,
-        fontSize: 18,
-        height: 44,
-    },
+  
 })
