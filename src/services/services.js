@@ -1,6 +1,6 @@
 import request from "./utils"
 const HOST = "http://kaaden.orrzt.com/api/"
-// const HOST = "http://127.0.0.1:80/"
+// const HOST = "http://127.0.0.1:8080/"
 const addr = {
     bing: HOST + "getBing",
     config: HOST + "getConfig",
@@ -17,7 +17,8 @@ const addr = {
     changeDz: HOST + "changeDz",
     findDzCount: HOST + "findDzCount",
     updateView: HOST + "updateView",
-    findImg: HOST + "findImg"
+    findImg: HOST + "findImg",
+    searchContent: HOST + "searchContent"
 };
 
 
@@ -27,7 +28,9 @@ export const getBing = () => {
 export const getContent = (data) => {
     return request(addr.content, data)
 }
-
 export const getTag = () => {
     return request(addr.tag)
+}
+export const search = (data) => {
+    return request(addr.searchContent, data)
 }

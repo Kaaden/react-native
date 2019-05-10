@@ -1,10 +1,10 @@
-import { observable, flow, reaction, computed, action } from "mobx"
+import { observable, flow, action } from "mobx"
 import * as service from "../services/services"
-export default class HomeStore {
+class HomeStore {
     @observable pic = "https://facebook.github.io/react/logo-og.png"
     @observable list = []
     @observable tag = []
-    @observable loading=true
+    @observable loading = true
     constructor() { }
 
 
@@ -17,13 +17,13 @@ export default class HomeStore {
 
 
     fetchList = flow(function* (payload) {
-        this.loading=true
+        this.afterLoading(true)
         const { pageindex, flesh } = payload
         const data = yield service.getContent({ pageindex: pageindex, pageSize: 10, status: 1 })
         if (data.isok) {
-            this.list = flesh ? data.data : [...this.list, ...data.data]
+            this.getList(flesh, data.data)
         }
-        this.loading=false
+        this.afterLoading(false)
     })
 
     fetchTag = flow(function* () {
@@ -33,5 +33,15 @@ export default class HomeStore {
         }
     })
 
+    @action
+    afterLoading(payload) {
+        this.loading = payload
+    }
 
+    @action
+    getList(flesh, data) {
+        this.list = flesh ? data : [...this.list, ...data]
+    }
 }
+
+export default HomeStore

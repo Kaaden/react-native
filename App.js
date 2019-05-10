@@ -1,12 +1,11 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { Component } from "react"
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import Switch from './src/navigation/Switch';
 import store from "./src/mobx/store"
 import { Provider } from "mobx-react"
 import { createAppContainer } from "react-navigation"
 const AppContainer = createAppContainer(Switch)
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     isLoading: false,
   };
@@ -24,9 +23,7 @@ export default class App extends React.Component {
     } else {
       return (
         <Provider rootStore={store}>
-          <View style={styles.container}>
-            <AppContainer />
-          </View>
+          <AppContainer />
         </Provider>
       );
     }
@@ -53,10 +50,4 @@ export default class App extends React.Component {
     this.setState({ isLoading: true });
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+export default App

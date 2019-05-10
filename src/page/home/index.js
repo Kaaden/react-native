@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
+import { StyleSheet, StatusBar, SafeAreaView, View } from 'react-native';
 import { observer, inject } from "mobx-react"
-import { Header } from "../../components"
 import List from "./components/List"
 @inject("rootStore")
 @observer
@@ -20,10 +19,14 @@ export default class Home extends React.Component {
             <SafeAreaView style={styles.container}>
                 <StatusBar
                     animated
-                    barStyle="dark-content"
+                    barStyle={"dark-content"}
                     backgroundColor="#FFFFFF"
+                    translucent={true}
                 />
-                <List _onSearch={this._onSearch} />
+                <View style={styles.main}>
+
+                    <List _onSearch={this._onSearch} />
+                </View>
             </SafeAreaView>
         );
     }
@@ -33,11 +36,9 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f0f0f0"
     },
-    item: {
-        padding: 10,
-        fontSize: 18,
-        height: 44,
+    main: {
+        flex: 1,
+        backgroundColor: "#f0f0f0"
     },
 })

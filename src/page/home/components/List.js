@@ -20,7 +20,7 @@ class List extends Component {
 
     componentDidMount() {
         const { list } = this.HomeStore
-        if(!list.length){
+        if (!list.length) {
             this._getData(1, false)
         }
     }
@@ -55,11 +55,11 @@ class List extends Component {
     _item = ({ item }) => <Item item={item} />
 
     _footer = () => {
-        const { list, loading } = this.HomeStore
-        if (!list.length) {
-            return null
-        } else {
+        const { loading } = this.HomeStore
+        if (loading) {
             return (<Loading loading={loading} />)
+        } else {
+            return null
         }
     }
 
@@ -78,6 +78,7 @@ class List extends Component {
         const { list } = this.HomeStore
         return (
             <FlatList
+                extraData={this.HomeStore}
                 data={list}
                 ListEmptyComponent={this._empty}
                 ListFooterComponent={this._footer}
