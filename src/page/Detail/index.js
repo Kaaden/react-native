@@ -17,13 +17,17 @@ class Detail extends React.Component {
         if (id) {
             console.log(id)
         } else {
-            Alert.alert('Alert Title')
-            // Alert.alert(
-            //     '啊哦~文章不见了~',
-            //     [
-            //         { text: 'OK', onPress: () => this.props.navigation.goBack() }
-            //     ]
-            // )
+
+            // Alert.alert("啊哦~文章不见了~")
+            Alert.alert(
+                '温馨提示',
+                '啊哦~文章不见了~',
+                [
+                    { text: '确定', onPress: () => this.props.navigation.goBack() },
+
+                ],
+                { cancelable: false }
+            );
         }
     }
 
