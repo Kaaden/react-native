@@ -7,12 +7,11 @@ import { Img, Color } from "../../../components"
 class List extends Component {
     constructor(props) {
         super(props)
-
     }
     render() {
-        const { item } = this.props
+        const { item, _onPress } = this.props
         return (
-            <TouchableHighlight >
+            <TouchableHighlight onPress={() => _onPress(item.id)}>
                 <View style={styles.container}>
                     <View style={styles.content}>
                         <View style={styles.top}>

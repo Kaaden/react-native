@@ -1,16 +1,19 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-
+import { TouchableOpacity, } from 'react-native';
 class Icon extends React.Component {
     render() {
-        const { color, style, name, size } = this.props
+        const { color, style, name, size, _onPress } = this.props
         return (
-            <Ionicons
-                name={name}
-                size={size}
-                style={style}
-                color={color}
-            />
+            <TouchableOpacity onPress={_onPress}>
+
+                <Ionicons
+                    name={name}
+                    size={size}
+                    style={style}
+                    color={color}
+                />
+            </TouchableOpacity>
         );
     }
 }

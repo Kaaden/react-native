@@ -8,22 +8,21 @@ class Img extends Component {
         super(props)
         this.state = {
             type: 0,
-            load: false
         }
     }
     render() {
-        const { type, load } = this.state
+        const { type } = this.state
         const { propsImg, styles } = this.props
-        let url = require("../../assets/images/idp.png")
-        if (load && !type) {
-            url = { uri: propsImg }
+        let url = { uri: propsImg }
+        if (type) {
+            url = require("../../assets/images/idp.png")
         }
         return (
             <Image
                 resizeMode="cover"
                 source={url}
                 style={styles}
-                onLoad={() => { this.setState({ load: true }) }}
+                defaultSource={require("../../assets/images/idp.png")} //默认图片
                 onError={(error) => { this.setState({ type: 1 }) }}
             />
         )

@@ -52,7 +52,10 @@ class List extends Component {
 
     _getItemLayout = (data, index) => ({ length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index })
 
-    _item = ({ item }) => <Item item={item} />
+    _item = ({ item }) => {
+        const { _onPress } = this.props
+        return (<Item item={item} _onPress={_onPress} />)
+    }
 
     _footer = () => {
         const { loading } = this.HomeStore

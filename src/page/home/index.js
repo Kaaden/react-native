@@ -8,11 +8,12 @@ export default class Home extends React.Component {
 
     constructor(props) {
         super(props)
-        const { HomeStore } = this.props.rootStore
-        this.HomeStore = HomeStore
     }
     _onSearch = () => {
         this.props.navigation.navigate("Search", { index: "home" })
+    }
+    _detail = (id) => {
+        this.props.navigation.navigate("Detail", { id: "" })
     }
     render() {
         return (
@@ -25,7 +26,9 @@ export default class Home extends React.Component {
                 />
                 <View style={styles.main}>
 
-                    <List _onSearch={this._onSearch} />
+                    <List
+                        _onSearch={this._onSearch}
+                        _onPress={this._detail} />
                 </View>
             </SafeAreaView>
         );

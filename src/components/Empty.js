@@ -10,7 +10,7 @@ class Empty extends Component {
 
         return (
             <View style={styles.contain}>
-                <Icon name={"logo-snapchat"} size={30} color={Color.tintColor} />
+                <Icon name={"logo-snapchat"} size={30} color={Color.tintColor}  _onPress={null}/>
                 <Text style={styles.title}>暂无数据~</Text>
             </View>
         )

@@ -9,7 +9,7 @@ class Loading extends Component {
     render() {
         return (
             <View style={styles.contain}>
-                <Icon name={"ios-barcode"} size={26} color={Color.desc} />
+                <Icon name={"ios-barcode"} size={26} color={Color.desc}  _onPress={null}/>
                 <Text style={styles.title}>正在加载中...</Text>
             </View>
         )

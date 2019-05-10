@@ -1,6 +1,7 @@
 import React from "react"
 import { createStackNavigator } from "react-navigation"
 import Tab from "./Tab"
+import Detail from "../page/Detail/index"
 import { Header } from "../components"
 const Stack = createStackNavigator(
     {
@@ -11,7 +12,12 @@ const Stack = createStackNavigator(
                 gesturesEnabled: false,
             }),
         },
-      
+        Detail: {
+            screen: Detail,
+            navigationOptions: () => ({
+            })
+
+        }
     },
 )
 

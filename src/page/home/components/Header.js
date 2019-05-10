@@ -6,16 +6,7 @@ import { observer } from "mobx-react"
 @observer
 class Search extends Component {
     render () {
-        const { data, _onSearch } = this.props
-        // let visible = false
-        // let hasTop = false
-        // if (data && data.length > 0) {
-        //     visible = true
-        //     hasTop = data[0].istop > 0
-        // }
-        // if (!visible) {
-        //     return null
-        // }
+        const { _onSearch } = this.props
         return (
             <View
                 style={[styles.container]}

@@ -34,3 +34,6 @@ export const getTag = () => {
 export const search = (data) => {
     return request(addr.searchContent, data)
 }
+export const detail = (data) => {
+    return request(addr.detail, data)
+}

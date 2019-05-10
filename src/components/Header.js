@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 import { observer, inject } from "mobx-react"
 
 import Colors from './Color';
@@ -17,14 +17,13 @@ class Header extends React.Component {
         const { title, _onPress } = this.props
         return (
             <View style={styles.container}>
-                <TouchableOpacity onPress={_onPress} >
 
-                    <Icon
-                        name={"md-menu"}
-                        size={26}
-                        color={Colors.tabIconSelected}
-                    />
-                </TouchableOpacity>
+                <Icon
+                    name={"md-menu"}
+                    size={26}
+                    color={Colors.tabIconSelected}
+                    _onPress={_onPress}
+                />
                 <Text style={styles.title} numberOfLines={1}>{title}</Text>
                 <Icon name={"md-add"} size={26} color={Colors.tabIconSelected} />
             </View>

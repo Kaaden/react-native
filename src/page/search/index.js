@@ -16,6 +16,10 @@ export default class Search extends React.Component {
         const { navigation } = this.props
         navigation.navigate("Home")
     }
+    _Detail = (id) => {
+        const { navigation } = this.props
+        navigation.navigate("Detail", { id })
+    }
     render() {
         const { loading, result, isok } = this.store
         return (
@@ -30,7 +34,11 @@ export default class Search extends React.Component {
 
                 <SafeAreaView style={styles.bottom}>
                     <Input _onPress={this._onPress} />
-                    <List list={result} loading={loading} isok={isok} />
+                    <List
+                        _onPress={this._Detail}
+                        list={result}
+                        loading={loading}
+                        isok={isok} />
                 </SafeAreaView>
             </View>
         );
