@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import { observer, inject } from "mobx-react"
 import Item from "./Item"
 import { Loading, Empty } from "../../../components"
+import Header from "./Header"
 const ITEM_HEIGHT = 82
 @inject("rootStore")
 @observer
@@ -18,7 +19,10 @@ class List extends Component {
     }
 
     componentDidMount() {
-        this._getData(1, false)
+        const { list } = this.HomeStore
+        if(!list.length){
+            this._getData(1, false)
+        }
     }
 
     _getData = (pageindex, flesh) => {
@@ -67,6 +71,8 @@ class List extends Component {
             return null
         }
     }
+
+    _header = () => <Header _onSearch={this.props._onSearch} />
     render() {
         const { refreshing } = this.state
         const { list } = this.HomeStore
@@ -75,6 +81,7 @@ class List extends Component {
                 data={list}
                 ListEmptyComponent={this._empty}
                 ListFooterComponent={this._footer}
+                ListHeaderComponent={this._header}
                 keyExtractor={this._keyExtractor}
                 renderItem={this._item}
                 onEndReached={this._onLoad}

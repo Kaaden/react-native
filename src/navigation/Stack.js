@@ -2,7 +2,6 @@ import React from "react"
 import { createStackNavigator } from "react-navigation"
 import Tab from "./Tab"
 import { Header } from "../components"
-import Search from "../page/search/index"
 const Stack = createStackNavigator(
     {
         Tab: {
@@ -12,13 +11,7 @@ const Stack = createStackNavigator(
                 gesturesEnabled: false,
             }),
         },
-        Search: {
-            screen: Search,
-
-            navigationOptions: ({ navigation }) => ({
-                headerTitle: null
-            })
-        },
+      
     },
 )
 

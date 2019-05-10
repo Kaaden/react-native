@@ -6,14 +6,14 @@ import List from "./components/List"
 @inject("rootStore")
 @observer
 export default class Home extends React.Component {
-    // static navigationOptions = ({ navigation }) => ({
 
-    //     headerTitle: <Header title={"首页"} _onPress={() => navigation.navigate('Search')} />,
-    // });//配置标题
     constructor(props) {
         super(props)
         const { HomeStore } = this.props.rootStore
         this.HomeStore = HomeStore
+    }
+    _onSearch = () => {
+        this.props.navigation.navigate("Search", { index: "home" })
     }
     render() {
         return (
@@ -23,7 +23,7 @@ export default class Home extends React.Component {
                     barStyle="dark-content"
                     backgroundColor="#FFFFFF"
                 />
-                <List />
+                <List _onSearch={this._onSearch} />
             </SafeAreaView>
         );
     }

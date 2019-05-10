@@ -20,7 +20,7 @@ class Header extends React.Component {
                 <TouchableOpacity onPress={_onPress} >
 
                     <Icon
-                        name={"md-search"}
+                        name={"md-menu"}
                         size={26}
                         color={Colors.tabIconSelected}
                     />
