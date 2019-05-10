@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
-import AppNavigator from './src/navigation/AppNavigator';
+import Switch from './src/navigation/Switch';
 import store from "./src/mobx/store"
 import { Provider } from "mobx-react"
 import { createAppContainer } from "react-navigation"
-const AppContainer = createAppContainer(AppNavigator)
+const AppContainer = createAppContainer(Switch)
 export default class App extends React.Component {
   state = {
     isLoading: false,

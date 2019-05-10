@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
+import { StyleSheet, StatusBar, SafeAreaView, Text } from 'react-native';
 import { observer, inject } from "mobx-react"
 import { Header } from "../../components"
 @inject("rootStore")
@@ -19,7 +19,7 @@ export default class Search extends React.Component {
                     barStyle="dark-content"
                     backgroundColor="#FFFFFF"
                 />
-              <Text>12313</Text>
+                <Text>12313</Text>
             </SafeAreaView>
         );
     }
@@ -31,5 +31,5 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#f0f0f0"
     },
-  
+
 })

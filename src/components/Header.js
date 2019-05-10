@@ -2,7 +2,6 @@ import React from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { observer, inject } from "mobx-react"
 
-import { createStackNavigator } from 'react-navigation'
 import Colors from './Color';
 import Icon from "./Icon"
 @inject("rootStore")

@@ -6,10 +6,10 @@ import List from "./components/List"
 @inject("rootStore")
 @observer
 export default class Home extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
+    // static navigationOptions = ({ navigation }) => ({
 
-        headerTitle: <Header title={"首页"} _onPress={navigation.navigate('Search')} />,
-    });//配置标题
+    //     headerTitle: <Header title={"首页"} _onPress={() => navigation.navigate('Search')} />,
+    // });//配置标题
     constructor(props) {
         super(props)
         const { HomeStore } = this.props.rootStore
