@@ -13,7 +13,7 @@ export default class Home extends React.Component {
         this.props.navigation.navigate("Search", { index: "home" })
     }
     _detail = (id) => {
-        this.props.navigation.navigate("Detail", { id: "" })
+        this.props.navigation.navigate("Detail", {id })
     }
     render() {
         return (

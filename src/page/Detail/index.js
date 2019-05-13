@@ -6,29 +6,33 @@ import { Icon, Color } from "../../components"
 @observer
 class Detail extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-
         headerLeft: <Icon style={{ paddingHorizontal: 16 }} color={Color.tintColor} name="md-arrow-back" size={26} _onPress={() => navigation.goBack()} />,
     })
     constructor(props) {
         super(props)
+        const { DetailStore } = this.props.rootStore
+        this.store = DetailStore
     }
     componentDidMount() {
         const { id } = this.props.navigation.state.params
         if (id) {
-            console.log(id)
+            this._getData(id)
         } else {
-
-            // Alert.alert("啊哦~文章不见了~")
-            Alert.alert(
-                '温馨提示',
-                '啊哦~文章不见了~',
-                [
-                    { text: '确定', onPress: () => this.props.navigation.goBack() },
-
-                ],
-                { cancelable: false }
-            );
+            this._WarnId()
         }
+    }
+    _getData = (id) => {
+        this.store.fetchDetail({ id })
+    }
+    _WarnId = () => {
+        Alert.alert(
+            '温馨提示',
+            '啊哦~文章不见了~',
+            [
+                { text: '确定', onPress: () => this.props.navigation.goBack() },
+            ],
+            { cancelable: false }
+        );
     }
 
     render() {
@@ -43,7 +47,8 @@ class Detail extends React.Component {
                 </SafeAreaView>
 
                 <SafeAreaView style={styles.bottom}>
-                    <Text>1</Text>
+                    <View style={styles.loading}>正在加载中</View>
+                    {/* <Text>1</Text> */}
                 </SafeAreaView>
             </View>
         );
@@ -61,6 +66,9 @@ const styles = StyleSheet.create({
     bottom: {
         flex: 1,
         backgroundColor: "#f0f0f0"
+    },
+    loading: {
+        width: "100%",
     }
 
 })

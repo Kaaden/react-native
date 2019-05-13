@@ -7,9 +7,10 @@ import Icon from "./Icon"
 class Loading extends Component {
 
     render() {
+        // const { height } = this.props
         return (
-            <View style={styles.contain}>
-                <Icon name={"ios-barcode"} size={26} color={Color.desc}  _onPress={null}/>
+            <View style={[styles.contain, { height: 44 }]}>
+                <Icon name={"ios-barcode"} size={26} color={Color.desc} _onPress={null} />
                 <Text style={styles.title}>正在加载中...</Text>
             </View>
         )
@@ -22,8 +23,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "100%",
         justifyContent: "center",
-        height: 44,
-
     },
     title: {
         color: Color.desc,

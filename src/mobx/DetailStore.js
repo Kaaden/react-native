@@ -2,12 +2,23 @@ import { observable, flow, action } from "mobx"
 import * as service from "../services/services"
 class DetailStore {
     @observable data = ""
-
+    @observable loading = false
     fetchDetail = flow(function* (payload) {
-        const data = yield service.detail(payload)
-        console.log(data)
+        this.afterLoading(true)
+        const data = yield service.detail({ ...payload })
+        this.doData(data.isok, data.data)
+        this.afterLoading(false)
 
     })
+
+    @action
+    afterLoading(payload) {
+        this.loading = payload
+    }
+    @action
+    doData(isok, data) {
+        this.data = isok ? data : ""
+    }
 }
 
 export default DetailStore
