@@ -11,7 +11,7 @@ class List extends Component {
     render() {
         const { item, _onPress } = this.props
         return (
-            <TouchableHighlight onPress={() => _onPress(item.id)}>
+            <TouchableHighlight onPress={() => _onPress(item)}>
                 <View style={styles.container}>
                     <View style={styles.content}>
                         <View style={styles.top}>

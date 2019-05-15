@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, StatusBar, SafeAreaView, View, Text, Alert } from 'react-native';
+import { StyleSheet, StatusBar, SafeAreaView, View, Text, Dimensions, Alert } from 'react-native';
 import { observer, inject } from "mobx-react"
-import { Icon, Color } from "../../components"
+import { Img, Icon, Color } from "../../components"
 @inject("rootStore")
 @observer
 class Detail extends React.Component {
     static navigationOptions = ({ navigation }) => ({
+        title:"",
         headerLeft: <Icon style={{ paddingHorizontal: 16 }} color={Color.tintColor} name="md-arrow-back" size={26} _onPress={() => navigation.goBack()} />,
     })
     constructor(props) {
@@ -14,12 +15,17 @@ class Detail extends React.Component {
         this.store = DetailStore
     }
     componentDidMount() {
-        const { id } = this.props.navigation.state.params
+        const { id, title } = this.props.navigation.state.params
+        console.log(title)
+        this._changeTitle(title)
         if (id) {
             this._getData(id)
         } else {
             this._WarnId()
         }
+    }
+    _changeTitle = (title) => {
+        this.props.navigation.setParams({ title })
     }
     _getData = (id) => {
         this.store.fetchDetail({ id })
@@ -36,6 +42,8 @@ class Detail extends React.Component {
     }
 
     render() {
+        const { data, loading } = this.store
+        console.log(loading)
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.top}>
@@ -47,8 +55,10 @@ class Detail extends React.Component {
                 </SafeAreaView>
 
                 <SafeAreaView style={styles.bottom}>
-                    <View style={styles.loading}>正在加载中</View>
-                    {/* <Text>1</Text> */}
+                    {loading && <View style={styles.loading}><Text style={styles.loadingText}>正在加载中...</Text></View>}
+                    {!loading && <View>
+                        <Img propsImg={data.img} styles={styles.topImg} />
+                    </View>}
                 </SafeAreaView>
             </View>
         );
@@ -69,6 +79,18 @@ const styles = StyleSheet.create({
     },
     loading: {
         width: "100%",
+        height: Dimensions.get("window").height / 2,
+        alignItems: "center",
+        justifyContent: "center",
+
+    },
+    loadingText: {
+        color: Color.desc,
+    },
+    topImg: {
+        width: "100%",
+        height: 200
     }
+
 
 })

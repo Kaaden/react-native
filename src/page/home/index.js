@@ -12,8 +12,8 @@ export default class Home extends React.Component {
     _onSearch = () => {
         this.props.navigation.navigate("Search", { index: "home" })
     }
-    _detail = (id) => {
-        this.props.navigation.navigate("Detail", {id })
+    _detail = (item) => {
+        this.props.navigation.navigate("Detail", { id: item.id, title: item.title })
     }
     render() {
         return (

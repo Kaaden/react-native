@@ -2,7 +2,7 @@ import { observable, flow, action } from "mobx"
 import * as service from "../services/services"
 class DetailStore {
     @observable data = ""
-    @observable loading = false
+    @observable loading = true
     fetchDetail = flow(function* (payload) {
         this.afterLoading(true)
         const data = yield service.detail({ ...payload })
