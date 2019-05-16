@@ -6,7 +6,7 @@ class DetailStore {
     fetchDetail = flow(function* (payload) {
         this.afterLoading(true)
         const data = yield service.detail({ ...payload })
-        this.doData(data.isok, data.data)
+        this.doData(data.data)
         this.afterLoading(false)
 
     })
@@ -16,8 +16,17 @@ class DetailStore {
         this.loading = payload
     }
     @action
-    doData(isok, data) {
-        this.data = isok ? data : ""
+    doData(data) {
+        let payload = ""
+        if (data) {
+            // const regex1 = new RegExp("(i?)(\<img)(?!(.*?style=['\"](.*)['\"])[^\>]+\>)", "gmi");
+            // data.content = data.content.replace(regex1, "$2 style=\"\"$3");
+            // const regex2 = new RegExp("(i?)(\<img.*?style=['\"])([^\>]+\>)", "gmi");
+            // data.content = data.content.replace(regex2, "$2display:block;height:300px;width:100%;$3");
+            data.content = data.content.replace(/↵/g, "");
+            payload = data
+        }
+        this.data = payload
     }
 }
 
