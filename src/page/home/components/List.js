@@ -90,7 +90,7 @@ class List extends Component {
                 renderItem={this._item}
                 onEndReached={this._onLoad}
                 getItemLayout={this._getItemLayout}
-                initialNumToRender={10}
+                initialNumToRender={1}
                 onEndReachedThreshold={0.1}
                 removeClippedSubviews
                 onRefresh={this._onRefresh}

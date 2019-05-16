@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { TouchableHighlight, Text, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 import { observer, inject } from "mobx-react"
 import { Img, Color } from "../../../components"
 @inject("rootStore")
@@ -11,7 +11,7 @@ class List extends Component {
     render() {
         const { item, _onPress } = this.props
         return (
-            <TouchableHighlight onPress={() => _onPress(item)}>
+            <TouchableOpacity onPress={() => _onPress(item)}>
                 <View style={styles.container}>
                     <View style={styles.content}>
                         <View style={styles.top}>
@@ -24,7 +24,7 @@ class List extends Component {
                     </View>
                     <Img styles={styles.img} propsImg={item.img} />
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         )
     }
 }
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         marginBottom: 10
     },
-
     top: {
         width: "100%",
         justifyContent: "space-between",
