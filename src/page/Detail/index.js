@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, StatusBar, SafeAreaView, View, Text, Dimensions, Alert, ScrollView, WebView } from 'react-native';
 import { observer, inject } from "mobx-react"
-import { Img, Icon, Color } from "../../components"
+import { Img, Color } from "../../components"
 @inject("rootStore")
 @observer
 class Detail extends React.Component {
@@ -56,13 +56,25 @@ class Detail extends React.Component {
         }
         window.onload=function(){ 
             ResizeImages()
-            window.location.hash = '#' + document.body.scrollHeight;
-            document.title = document.body.scrollHeight ;
+            window.location.hash = '#' + document.body.clientHeight;
+            document.title = document.body.clientHeight ;
         }
         </script></body></html>`
         return html
     }
-
+    _webViewLoad = () => {
+        this.refs.webview.injectJavaScript(`
+        const height = document.body.scrollHeight;
+        window.postMessage(height);
+    `);
+        this.setState({ webLoading: false })
+    }
+    handleMessage(e) {
+        console.log(e)
+        this.setState({
+            WebViewHeight: e.nativeEvent.data
+        });
+    }
     render() {
         const { webLoading, webViewHeight } = this.state
         const { data, loading } = this.store
@@ -95,20 +107,25 @@ class Detail extends React.Component {
                         <View style={{ paddingHorizontal: 20, height: webViewHeight, width: Dimensions.get("window").width }}>
                             {this.LoadView(webLoading)}
                             <WebView
+                                ref={'webview'}
                                 source={{ html: this.getHtml(data.content) }}
-                                onLoadEnd={() => this.setState({ webLoading: false })}
-                                style={{ flex: 1, height: "100%" }}
+                                onLoadEnd={this.webViewLoaded}
+                                style={{ flex: 1 }}
                                 bounces={true}
                                 scrollEnabled={false}
                                 javaScriptEnabled={true}
                                 automaticallyAdjustContentInsets={true}
-                                onNavigationStateChange={(title) => {
-                                    console.log(title)
-                                    if (title.title != undefined) {
-                                        this.setState({
-                                            webViewHeight: (parseInt(title.title) + 20)
-                                        })
-                                    }
+                                // onNavigationStateChange={(title) => {
+                                //     console.log(title)
+                                //     if (title.title != undefined) {
+                                //         this.setState({
+                                //             webViewHeight: (parseInt(title.title) + 20)
+                                //         })
+                                //     }
+                                // }}
+
+                                onMessage={(e) => {
+                                    this.handleMessage(e)
                                 }}
                             />
                         </View>
